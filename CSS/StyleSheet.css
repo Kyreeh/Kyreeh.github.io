@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@700&family=Rajdhani:wght@300&display=swap');
+*   {
+    box-sizing: border-box;
+    margin: auto
+    padding auto;
+}
+
+header {
+    background-color: royalblue;
+    margin: -25px;
+    margin-top: 15px;
+    height: 75px; 
+    text-decoration: none;
+}
+footer {
+    background-color: royalblue;
+    margin: -25px; 
+}
+
+body {
+    background-color : white;
+}
+
+
+hr {
+    display: block; height: 1px;
+    border: 0; border-top: 1px solid white;
+    margin: 1em 0; padding: 0;
+}
+
+
+#headername {
+    color:  white;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Oleo Script Swash Caps', cursive, sans-serif;
+    border-color: black;
+}
+
+.Socialmedialogo {
+    display:inline-block;
+    width: 25px; 
+    height: 25px;
+    background-color: white;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    margin-top: 5px;
+   
+    
+}
+
+a{
+    display:inline-block;
+    height:25px;
+    width:25px;
+}
+
+
+.navbar  {
+    background-color: royalblue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 200px;
+    margin: -15px;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    
+ }
+
+ .MainBox{
+     display: flex;
+     height: 500px; 
+ }
+
+ #imageBox {
+    color: royalblue;
+    align-self: center;
+    justify-content: center;
+ }
+
+ #textBox { 
+    color: whitesmoke;
+    align-self: center;
+    justify-content: center;
+
+
+ }
+
+ .underconstruction{
+    display: block;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-bottom: 50px;
+    background-color: none;
+    padding-top: 50px; 
+    padding-bottom: 50px; 
+   
+ }
+ 
