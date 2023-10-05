@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Kyreeh.github.io/static/css/main.ca3326ef.css",
+    "main.js": "/Kyreeh.github.io/static/js/main.a7e90164.js",
+    "static/js/787.4557512a.chunk.js": "/Kyreeh.github.io/static/js/787.4557512a.chunk.js",
+    "index.html": "/Kyreeh.github.io/index.html",
+    "main.ca3326ef.css.map": "/Kyreeh.github.io/static/css/main.ca3326ef.css.map",
+    "main.a7e90164.js.map": "/Kyreeh.github.io/static/js/main.a7e90164.js.map",
+    "787.4557512a.chunk.js.map": "/Kyreeh.github.io/static/js/787.4557512a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ca3326ef.css",
+    "static/js/main.a7e90164.js"
+  ]
+}
