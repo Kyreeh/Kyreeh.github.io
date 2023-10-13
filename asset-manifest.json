@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/Kyreeh.github.io/static/css/main.ca3326ef.css",
-    "main.js": "/Kyreeh.github.io/static/js/main.a7e90164.js",
+    "main.css": "/Kyreeh.github.io/static/css/main.ab912f60.css",
+    "main.js": "/Kyreeh.github.io/static/js/main.8a575b56.js",
     "static/js/787.4557512a.chunk.js": "/Kyreeh.github.io/static/js/787.4557512a.chunk.js",
+    "static/media/twitter-logo.png": "/Kyreeh.github.io/static/media/twitter-logo.d67fc83e74561d99067b.png",
+    "static/media/Kherron.jpeg": "/Kyreeh.github.io/static/media/Kherron.3fe72fdbbe261ebc6e54.jpeg",
+    "static/media/logo192.png": "/Kyreeh.github.io/static/media/logo192.e381606d39e7a49f5332.png",
     "index.html": "/Kyreeh.github.io/index.html",
-    "main.ca3326ef.css.map": "/Kyreeh.github.io/static/css/main.ca3326ef.css.map",
-    "main.a7e90164.js.map": "/Kyreeh.github.io/static/js/main.a7e90164.js.map",
+    "main.ab912f60.css.map": "/Kyreeh.github.io/static/css/main.ab912f60.css.map",
+    "main.8a575b56.js.map": "/Kyreeh.github.io/static/js/main.8a575b56.js.map",
     "787.4557512a.chunk.js.map": "/Kyreeh.github.io/static/js/787.4557512a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ca3326ef.css",
-    "static/js/main.a7e90164.js"
+    "static/css/main.ab912f60.css",
+    "static/js/main.8a575b56.js"
   ]
 }
