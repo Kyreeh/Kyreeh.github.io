@@ -3,8 +3,7 @@ import styles from './StyleSheet.module.css';
 
 // ImageHeader component
 function ImageHeader() {
-  // You can replace the 'imageUrl' with the actual URL of your image.
-  const imageUrl = 'https://example.com/your-image.jpg';
+  const imageUrl = 'Kherron.jpeg';
 
   return (
     <header>

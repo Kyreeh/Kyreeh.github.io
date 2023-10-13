@@ -70,6 +70,22 @@ font-size: 16px;
 background-color: #ffffff;
 }
 
+.navbar img {
+  max-width: 40px; /* Adjust the maximum width for the logo images */
+  max-height: 40px; /* Adjust the maximum height for the logo images */
+  /* If you want the images to scale proportionally, you can use only one of max-width or max-height. */
+}
+
+/* Optional: Add hover effects for logos */
+.navbar a:hover img {
+  opacity: 0.7; 
+}
+
+.navbar a {
+  display: inline-block;
+  margin: 0 10px; /* Adjust spacing between logos as needed */
+}
+
 .home{
   
 }
