@@ -1,0 +1,307 @@
+/* -----------------------------------------------------
+   GLOBAL RESET + BASE THEME
+----------------------------------------------------- */
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+body.dark {
+  background-color: #0d0d0d;
+}
+
+html, body, #root {
+  height: 100%;
+  min-height: 100%;
+  background-color: inherit;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  color: #111;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Dark mode body */
+body.dark {
+  background-color: #0d0d0d;
+  color: #ffffff;
+}
+
+/* All headings follow global color + centered */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  text-align: center;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+/* Centering page headers */
+.page-container h1,
+.page-container h2 {
+  text-align: center;
+}
+
+/* -----------------------------------------------------
+   NAVIGATION
+----------------------------------------------------- */
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  font-size: 1.2rem;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------
+   WELCOME PAGE FULLSCREEN LAYOUT
+----------------------------------------------------- */
+
+.welcome-fullscreen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 0;
+  
+
+  background-image: var(--welcome-bg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+.welcome-content {
+  width: 95%;
+  max-width: 1400px;
+}
+
+/* Image + title row */
+.welcome-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+/* Hero title */
+/* Graffiti Text Style */
+.welcome-title {
+  font-family: 'Fascinate Inline', cursive;
+  font-size: 4.5rem;
+  text-align: center;
+  color: #ff4fd9;
+  text-shadow:
+    2px 2px 0 #000,
+    4px 4px 0 #222,
+    6px 6px 0 #333;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+body.dark .welcome-title {
+  color: #00eaff;
+  text-shadow:
+    2px 2px 0 #000,
+    4px 4px 0 #004d66,
+    6px 6px 0 #003344;
+}
+
+
+/* Profile image */
+.welcome-image {
+  width: 260px;
+  height: 260px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.4s ease;
+}
+
+body.dark .welcome-image {
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.18);
+}
+
+/* -----------------------------------------------------
+   PAGE LIST WRAPPER
+----------------------------------------------------- */
+
+.welcome-list {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* -----------------------------------------------------
+   GRID LAYOUT FOR TILES
+----------------------------------------------------- */
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 1200px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  margin: 0 auto;
+}
+
+/* Tile styling */
+li {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 20px;
+  border-radius: 20px;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover pop */
+li:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+}
+
+body.dark li:hover {
+  box-shadow: 0 10px 24px rgba(255,255,255,0.18);
+}
+
+/* Let tile links inherit text color */
+li a {
+  color: inherit;
+  text-decoration: none;
+  z-index: 2;
+  position: relative;
+}
+
+/* -----------------------------------------------------
+   BACKGROUND IMAGES FOR TILES
+----------------------------------------------------- */
+
+/* Shared tile background behavior */
+.tile-projects,
+.tile-activism,
+.tile-news {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Light-mode images */
+.tile-projects {
+  background-image: url("./assets/projects.jpg");
+}
+
+.tile-activism {
+  background-image: url("./assets/activism.jpg");
+}
+
+.tile-news {
+  background-image: url("./assets/news.jpg");
+}
+
+/* Optional Dark-mode versions */
+body.dark .tile-projects {
+  background-image: url("./assets/projects.jpg");
+}
+
+body.dark .tile-activism {
+  background-image: url("./assets/activism.jpg");
+}
+
+body.dark .tile-news {
+  background-image: url("./assets/news.jpg");
+}
+
+/* -----------------------------------------------------
+   OVERLAY TINT (IMPORTANT: CLICK-THROUGH ENABLED)
+----------------------------------------------------- */
+
+.tile-projects::before,
+.tile-activism::before,
+.tile-news::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;  /* FIX: ensures clicks work! */
+}
+
+body.dark .tile-projects::before,
+body.dark .tile-activism::before,
+body.dark .tile-news::before {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+li:hover::before {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+body.dark li:hover::before {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* -----------------------------------------------------
+   PAGE CONTENT LAYOUT WRAPPER (PROJECTS / NEWS / ETC)
+----------------------------------------------------- */
+
+.page-container {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 20px;
+  text-align: center;
+}
+.site-footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  font-size: 1rem;
+  background-color: #f0f0f0;   /* light mode */
+  color: #111;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Dark mode footer */
+body.dark .site-footer {
+  background-color: #111;
+  color: white;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
