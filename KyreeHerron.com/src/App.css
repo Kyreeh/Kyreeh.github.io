@@ -1,7 +1,6 @@
 /* -----------------------------------------------------
    GLOBAL RESET + BASE THEME
 ----------------------------------------------------- */
-
 html {
   min-height: 100%;
 }
@@ -24,17 +23,20 @@ html, body, #root {
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: Arial, sans-serif;
   color: #111;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark mode text */
+
+/* Dark mode body */
 body.dark {
+  background-color: #0d0d0d;
   color: #ffffff;
 }
 
-/* Center all page headers */
+/* All headings follow global color + centered */
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   text-align: center;
@@ -42,6 +44,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: color 0.3s ease;
 }
 
+/* Centering page headers */
 .page-container h1,
 .page-container h2 {
   text-align: center;
@@ -57,10 +60,6 @@ nav {
   gap: 20px;
   padding: 20px;
   font-size: 1.2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: inherit;
 }
 
 nav a {
@@ -90,18 +89,21 @@ button {
   box-sizing: border-box;
   position: relative;
   z-index: 0;
+  
+
   background-image: var(--welcome-bg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
+
 .welcome-content {
   width: 95%;
   max-width: 1400px;
 }
 
-/* Row with title + image */
+/* Image + title row */
 .welcome-header {
   display: flex;
   justify-content: center;
@@ -111,10 +113,11 @@ button {
   margin-bottom: 60px;
 }
 
-/* Graffiti Title */
+/* Hero title */
+/* Graffiti Text Style */
 .welcome-title {
   font-family: 'Fascinate Inline', cursive;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: 4.5rem;
   text-align: center;
   color: #ff4fd9;
   text-shadow:
@@ -132,6 +135,7 @@ body.dark .welcome-title {
     6px 6px 0 #003344;
 }
 
+
 /* Profile image */
 .welcome-image {
   width: 260px;
@@ -147,7 +151,7 @@ body.dark .welcome-image {
 }
 
 /* -----------------------------------------------------
-   PAGE LIST GRID
+   PAGE LIST WRAPPER
 ----------------------------------------------------- */
 
 .welcome-list {
@@ -155,6 +159,10 @@ body.dark .welcome-image {
   justify-content: center;
   width: 100%;
 }
+
+/* -----------------------------------------------------
+   GRID LAYOUT FOR TILES
+----------------------------------------------------- */
 
 ul {
   list-style: none;
@@ -168,6 +176,7 @@ ul {
   margin: 0 auto;
 }
 
+/* Tile styling */
 li {
   position: relative;
   overflow: hidden;
@@ -178,9 +187,11 @@ li {
   color: white;
   cursor: pointer;
   text-align: center;
+
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Hover pop */
 li:hover {
   transform: scale(1.04);
   box-shadow: 0 10px 24px rgba(0,0,0,0.4);
@@ -190,6 +201,7 @@ body.dark li:hover {
   box-shadow: 0 10px 24px rgba(255,255,255,0.18);
 }
 
+/* Let tile links inherit text color */
 li a {
   color: inherit;
   text-decoration: none;
@@ -197,7 +209,9 @@ li a {
   position: relative;
 }
 
-/* Tile backgrounds */
+/* -----------------------------------------------------
+   BACKGROUND IMAGES FOR TILES
+----------------------------------------------------- */
 .tile-projects,
 .tile-activism,
 .tile-news {
@@ -218,14 +232,7 @@ li a {
   background-image: url("./assets/news.jpg");
 }
 
-/* Dark mode uses same images but darker overlay */
-body.dark .tile-projects,
-body.dark .tile-activism,
-body.dark .tile-news {
-  background-image: inherit;
-}
-
-/* Tile overlay tints */
+/* Dark mode overlay ONLY — does NOT remove the images */
 .tile-projects::before,
 .tile-activism::before,
 .tile-news::before {
@@ -233,27 +240,26 @@ body.dark .tile-news {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   pointer-events: none;
 }
 
 body.dark .tile-projects::before,
 body.dark .tile-activism::before,
 body.dark .tile-news::before {
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
 }
 
-/* Hover overlays */
 li:hover::before {
-  background: rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 body.dark li:hover::before {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* -----------------------------------------------------
-   PAGE CONTAINER (Projects / News / Activism)
+   PAGE CONTENT LAYOUT WRAPPER (PROJECTS / NEWS / ETC)
 ----------------------------------------------------- */
 
 .page-container {
@@ -262,76 +268,21 @@ body.dark li:hover::before {
   padding: 20px;
   text-align: center;
 }
-
-/* -----------------------------------------------------
-   FOOTER
------------------------------------------------------ */
-
 .site-footer {
   width: 100%;
   text-align: center;
   padding: 20px 0;
   margin-top: 40px;
   font-size: 1rem;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0;   /* light mode */
   color: #111;
   transition: background-color 0.3s ease, color 0.3s ease;
   border-top: 1px solid rgba(0,0,0,0.1);
 }
 
+/* Dark mode footer */
 body.dark .site-footer {
   background-color: #111;
   color: white;
   border-top: 1px solid rgba(255,255,255,0.2);
-}
-
-/* -----------------------------------------------------
-   MOBILE OPTIMIZATION
------------------------------------------------------ */
-
-@media (max-width: 768px) {
-
-  /* Mobile nav layout */
-  nav {
-    flex-direction: column;
-    gap: 10px;
-    padding: 12px 0;
-    font-size: 1rem;
-  }
-
-  nav a, nav button {
-    font-size: 0.95rem;
-    padding: 6px 12px;
-  }
-
-  /* Welcome area */
-  .welcome-fullscreen {
-    padding: 20px;
-    background-size: 70%;
-  }
-
-  /* Title scales automatically (clamp already set) */
-
-  /* Profile image */
-  .welcome-image {
-    width: 180px;
-    height: 180px;
-  }
-
-  /* Page list grid becomes 1 column */
-  ul {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  li {
-    font-size: 1.6rem;
-    padding: 60px 20px;
-  }
-
-  /* Footer spacing */
-  .site-footer {
-    padding: 14px 0;
-    font-size: 0.85rem;
-  }
 }
