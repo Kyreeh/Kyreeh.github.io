@@ -100,7 +100,7 @@ const App: React.FC = () => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="/instagram.png" alt="Instagram" className="nav-icon" />
+      <img src="/instagram-logo.png" alt="Instagram" className="nav-icon" />
     </a>
   </div>
 
