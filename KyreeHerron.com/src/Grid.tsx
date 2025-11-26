@@ -1,75 +1,104 @@
 import React, { useState } from "react";
 import Comments from "./Comments";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+
+export interface MediaItem {
+  type: "image" | "video";
+  src: string;
+}
 
 export interface GridPost {
   id: string;
   title: string;
   date: string;
   content: string;
-  image?: string;
-  video?: string;
+  media: MediaItem[];
 }
 
 export default function Grid({ posts }: { posts: GridPost[] }) {
   const [activePost, setActivePost] = useState<GridPost | null>(null);
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const closeLightbox = () => {
+    setActivePost(null);
+    setSlideIndex(0);
+  };
 
   return (
     <>
+      {/* GRID VIEW */}
       <div className="ig-grid">
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className="ig-tile"
-            onClick={() => setActivePost(post)}
-          >
-            {post.image ? (
-              <img src={post.image} alt={post.title} />
-            ) : post.video ? (
-              <div className="ig-video-thumb">
-                <span className="ig-play">▶</span>
-              </div>
-            ) : null}
+        {posts.map((post) => {
+          const first = post.media[0];
 
-            <div className="ig-overlay">
-              <div className="ig-overlay-text">
-                <div className="ig-title">{post.title}</div>
-                <div className="ig-date">{post.date}</div>
+          return (
+            <div
+              key={post.id}
+              className="ig-tile"
+              onClick={() => {
+                setActivePost(post);
+                setSlideIndex(0);
+              }}
+            >
+              {first.type === "image" ? (
+                <img src={first.src} alt={post.title} />
+              ) : (
+                <div className="ig-video-thumb">
+                  <span className="ig-play">▶</span>
+                </div>
+              )}
+
+              <div className="ig-overlay">
+                <div className="ig-overlay-text">
+                  <div className="ig-title">{post.title}</div>
+                  <div className="ig-date">{post.date}</div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* ---------------------------
-          LIGHTBOX for active post
-      ---------------------------- */}
+      {/* LIGHTBOX */}
       {activePost && (
-        <div className="ig-lightbox" onClick={() => setActivePost(null)}>
-          <div
-            className="ig-lightbox-inner"
-            onClick={(e) => e.stopPropagation()}  // so clicking inside doesn't close
-          >
-            <button className="ig-close" onClick={() => setActivePost(null)}>
+        <div className="ig-lightbox" onClick={closeLightbox}>
+          <div className="ig-lightbox-inner" onClick={(e) => e.stopPropagation()}>
+            <button className="ig-close" onClick={closeLightbox}>
               ✕
             </button>
 
-            {/* LEFT SIDE — MEDIA */}
             <div className="ig-lightbox-media">
-              {activePost.image && (
-                <img src={activePost.image} alt={activePost.title} />
-              )}
-
-              {activePost.video && (
-                <video src={activePost.video} controls />
-              )}
+              <Swiper
+                modules={[Pagination]}
+                pagination={{ clickable: true }}
+                onSlideChange={(swiper) => setSlideIndex(swiper.activeIndex)}
+                initialSlide={slideIndex}
+                className="lb-swiper"
+              >
+                {activePost.media.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="lightbox-media-wrapper">
+                      {item.type === "image" ? (
+                        <img src={item.src} className="lightbox-image" />
+                      ) : (
+                        <video
+                          src={item.src}
+                          className="lightbox-video"
+                          controls
+                        />
+                      )}
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
 
-            {/* RIGHT SIDE — TEXT + COMMENTS */}
             <div className="ig-lightbox-body">
               <h2>{activePost.title}</h2>
               <p>{activePost.content}</p>
-
-              {/* ⭐ COMMENTS PER POST */}
               <Comments postId={activePost.id} />
             </div>
           </div>

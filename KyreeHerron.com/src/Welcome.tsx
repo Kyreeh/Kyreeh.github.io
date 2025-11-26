@@ -9,23 +9,32 @@ const Welcome = () => {
       className="welcome-fullscreen"
       style={{ "--welcome-bg": `url(${tigerLogo})` } as React.CSSProperties}
     >
-      <div className="welcome-content">
 
-        {/* Header Section */}
+      {/* ---------------------- DESKTOP VIEW ---------------------- */}
+      <div className="welcome-desktop">
         <div className="welcome-header">
           <img src={headshot} className="welcome-image" alt="Headshot" />
-
-          <h1 className="welcome-title">
-            Welcome to KyreeHerron.com
-          </h1>
+          <h1 className="welcome-title">Welcome to KyreeHerron.com</h1>
         </div>
 
-        {/* Page Navigation Tiles */}
         <section className="welcome-list">
           <PageList />
         </section>
-
       </div>
+
+      {/* ----------------------- MOBILE VIEW ----------------------- */}
+      <div className="welcome-mobile">
+        <img src={headshot} className="welcome-mobile-image" alt="Headshot" />
+
+        <h1 className="welcome-mobile-title">
+          Welcome to KyreeHerron.com
+        </h1>
+
+        <div className="welcome-mobile-list">
+          <PageList />
+        </div>
+      </div>
+
     </div>
   );
 };

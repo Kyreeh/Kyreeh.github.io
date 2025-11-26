@@ -81,6 +81,27 @@ h1, h2, h3, h4, h5, h6 {
 .ig-tile:focus img {
   transform: scale(1.08);
 }
+.lightbox-media-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.lightbox-video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: black;
+}
+
 
 /* Tile image */
 .ig-tile img {
@@ -223,11 +244,16 @@ body.dark .ig-close {
 /* Media viewer */
 .ig-lightbox-media {
   background: #000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex: 1;
+  height: 80vh;     /* <-- MOST IMPORTANT */
+  overflow: hidden;
+  pointer-events: auto;
 }
+
 
 .ig-lightbox-media img,
 .ig-lightbox-media video,
@@ -238,6 +264,88 @@ body.dark .ig-close {
   object-fit: contain;
   border-radius: 8px;
 }
+/* -----------------------------------------------------
+   MULTI-IMAGE LIGHTBOX CAROUSEL UPGRADE
+------------------------------------------------------ */
+
+/* Wrapper for each slide */
+.lightbox-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Actual image inside a slide */
+.lightbox-image {
+  width: 100%;
+  height: auto;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Swipe container should stretch */
+.swipeable-view-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Video fixes inside lightbox */
+.lightbox-video {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Prevent horizontal scroll inside swipe area */
+.ig-lightbox-media {
+  overflow: hidden;
+}
+
+/* Swiper must have real dimensions */
+.lb-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+}
+
+.swiper-wrapper {
+  height: 100% !important;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pagination bullets */
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ffffff !important;
+}
+
+body.dark .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.27);
+}
+
+body.dark .swiper-pagination-bullet-active {
+  background: #00eaff !important;
+}
+
 
 /* Text area */
 .ig-lightbox-body {
@@ -431,7 +539,9 @@ li {
   cursor: pointer;
   text-align: center;
 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, 
+              box-shadow 0.3s ease,
+              color 0.25s ease;
 }
 
 /* Hover pop */
@@ -440,8 +550,25 @@ li:hover {
   box-shadow: 0 10px 24px rgba(0,0,0,0.4);
 }
 
+/* Dark mode hover */
 body.dark li:hover {
   box-shadow: 0 10px 24px rgba(255,255,255,0.18);
+}
+
+/* Hover text readability fix */
+li:hover {
+  color: #f6f6f6 !important;
+  text-shadow:
+    0 0 6px rgba(0,0,0,0.9),
+    0 0 12px rgba(0,0,0,0.7);
+}
+
+/* Dark mode readable hover */
+body.dark li:hover {
+  color: #eaffff !important;
+  text-shadow:
+    0 0 5px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.8);
 }
 
 /* Let tile links inherit text color */
@@ -455,6 +582,7 @@ li a {
 /* -----------------------------------------------------
    BACKGROUND IMAGES FOR TILES
 ----------------------------------------------------- */
+
 .tile-projects,
 .tile-activism,
 .tile-news {
@@ -475,7 +603,10 @@ li a {
   background-image: url("./assets/news.jpg");
 }
 
-/* Dark mode overlay ONLY — does NOT remove the images */
+/* -----------------------------------------------------
+   OVERLAY TINT (visible in both modes)
+----------------------------------------------------- */
+
 .tile-projects::before,
 .tile-activism::before,
 .tile-news::before {
@@ -483,22 +614,24 @@ li a {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgba(0, 0, 0, 0.3);
-  pointer-events: none;
+  background: rgba(0, 0, 0, 0.25);
+  pointer-events: none; 
 }
 
+/* Deepened overlay in dark mode */
 body.dark .tile-projects::before,
 body.dark .tile-activism::before,
 body.dark .tile-news::before {
   background: rgba(0, 0, 0, 0.55);
 }
 
+/* Hover overlays */
 li:hover::before {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0,0,0,0.20);
 }
 
 body.dark li:hover::before {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.08);
 }
 
 /* -----------------------------------------------------
@@ -686,5 +819,96 @@ body.dark nav button.nav-button:hover {
     padding: 60px 20px;
     font-size: 1.8rem;
   }
+  /* PageList item hover fix */
+  li:hover {
+  color: #111 !important;          /* Deep black text */
+  text-shadow: 0 0 4px rgba(255,255,255,0.7);  /* outline for visibility */
 }
 
+}
+
+/* --------------------- DESKTOP LAYOUT ---------------------- */
+.welcome-desktop {
+  display: block;
+}
+
+.welcome-mobile {
+  display: none;
+}
+
+
+/* --------------------- MOBILE LAYOUT ------------------------ */
+@media (max-width: 768px) {
+
+  .welcome-desktop {
+    display: none !important;     /* hide desktop */
+  }
+
+  .welcome-mobile {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .welcome-mobile-image {
+    width: 65%;
+    max-width: 240px;
+    border-radius: 20px;
+  }
+
+  .welcome-mobile-title {
+    font-size: 2.4rem;
+    padding: 0 20px;
+    line-height: 1.2;
+  }
+
+  .welcome-mobile-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Make PageList mobile-friendly */
+  ul {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+    width: 100%;
+  }
+
+  li {
+    padding: 50px 20px;
+    font-size: 1.8rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+/* Giscus mobile fixes */
+@media (max-width: 768px) {
+  .ig-lightbox-body {
+    padding: 10px 5px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .giscus-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .ig-lightbox-inner {
+    flex-direction: column;        /* comments under image */
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .ig-lightbox-media img,
+  .ig-lightbox-media video {
+    width: 100%;
+    max-height: 40vh;              /* prevent vertical overflow */
+    object-fit: cover;
+  }
+}
