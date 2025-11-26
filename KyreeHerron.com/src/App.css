@@ -636,4 +636,55 @@ body.dark nav a.nav-button:hover,
 body.dark nav button.nav-button:hover {
   background: rgba(255,255,255,0.18);
 }
+/* -----------------------------------------------------
+   MOBILE FIX — STOP HORIZONTAL SCROLL ON WELCOME
+------------------------------------------------------ */
+@media (max-width: 768px) {
+
+  /* Prevent any horizontal scroll */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .welcome-fullscreen {
+    padding: 10px !important;    /* shrink padding */
+    background-size: cover;      /* better scaling */
+  }
+
+  .welcome-content {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .welcome-header {
+    flex-direction: column;      /* stack image + title */
+    gap: 20px;
+  }
+
+  .welcome-image {
+    width: 70%;
+    max-width: 220px;            /* reduce size for phones */
+    height: auto;
+  }
+
+  .welcome-title {
+    font-size: 2.6rem !important;  /* scale graffiti */
+    padding: 0 10px;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  /* Fix PageList grid sizing */
+  ul {
+    grid-template-columns: 1fr;  /* one tile per row */
+    gap: 20px;
+  }
+
+  li {
+    padding: 60px 20px;
+    font-size: 1.8rem;
+  }
+}
 
