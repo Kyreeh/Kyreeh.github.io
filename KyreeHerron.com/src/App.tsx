@@ -85,8 +85,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <nav>
-  <Link to="/">Home</Link>
-
+  <Link to="/" className="nav-button">Home</Link>
   <div className="nav-icons">
     <a
       href="https://www.linkedin.com/in/kyreeherron/"
